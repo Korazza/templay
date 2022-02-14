@@ -1,4 +1,4 @@
-module github.com/Korazza/temply
+module github.com/Korazza/templay
 
 go 1.17
 
