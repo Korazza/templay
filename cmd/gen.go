@@ -8,18 +8,18 @@ import (
 )
 
 var genCmd = &cobra.Command{
-	Use:   "gen -n name [flags] destination",
+	Use:   "gen [-d destination] [flags] name",
 	Args:  cobra.ExactArgs(1),
 	Short: "Generate a templay",
 	Long:  `Generate a templay`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		templayName, err := cmd.Flags().GetString("name")
+		destination, err := cmd.Flags().GetString("dest")
 
 		if err != nil {
 			return err
 		}
 
-		destination := args[0]
+		templayName := args[0]
 
 		var templayPath string
 
@@ -44,5 +44,5 @@ var genCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(genCmd)
 
-	genCmd.Flags().StringP("name", "n", "", "Name of a templay")
+	genCmd.Flags().StringP("dest", "d", ".", "Destination of the templay")
 }
