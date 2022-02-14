@@ -7,6 +7,9 @@
     "email": "corattiroberto@gmail.com"
   },
   "license": "MPL-2.0",
+  "bin": {
+    "templay": "./bin/templay"
+  },
   "scripts": {
     "build": "go get && go build -o ./bin/ .",
     "preinstall": "npm run build",
