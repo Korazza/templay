@@ -1,2 +1,5 @@
-go.sum
+node_modules
 bin
+yarn.lock
+package-lock.json
+go.sum
