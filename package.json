@@ -8,7 +8,8 @@
   },
   "license": "MPL-2.0",
   "scripts": {
-    "build": "go build -o ./bin/ .",
-    "preinstall": "npm run build"
+    "build": "go get && go build -o ./bin/ .",
+    "preinstall": "npm run build",
+    "preuninstall": "rm -rf ./bin"
   }
 }
