@@ -7,7 +7,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "temply",
+	Use:   "templay",
 	Short: "A monorepo tool for generating templated folders",
 	Long:  `A monorepo tool for generating templated folders`,
 }
