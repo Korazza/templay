@@ -1,0 +1,14 @@
+{
+  "name": "temply",
+  "version": "0.0.1",
+  "repository": "https://github.com/Korazza/temply.git",
+  "author": {
+    "name": "Korazza",
+    "email": "corattiroberto@gmail.com"
+  },
+  "license": "MPL-2.0",
+  "scripts": {
+    "build": "go build -o ./bin/ .",
+    "preinstall": "npm run build"
+  }
+}
