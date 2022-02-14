@@ -2,17 +2,15 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Test
-      uses: actions/setup-node@v2
-      with:
-        cache: 'npm'
-    - run: ls -la
+      - name: Test
+        uses: actions/setup-node@v2
+      - run: npm i -g templay
+      - run: templay
