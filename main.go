@@ -1,10 +1,6 @@
-/*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
-*/
 package main
 
-import "github.com/Korazza/temply/cmd"
+import "github.com/Korazza/templay/cmd"
 
 func main() {
 	cmd.Execute()
