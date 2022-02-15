@@ -11,9 +11,9 @@ var Config config.Config
 
 var rootCmd = &cobra.Command{
 	Use:   "templay",
-	Short: "A tool for generating templated folders",
+	Short: "A tool for generating templated directories",
 	Long: `Templay
-  A tool for generating templated folders`,
+  A tool for generating templated directories`,
 }
 
 func Execute(c config.Config) {
