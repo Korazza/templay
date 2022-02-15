@@ -4,4 +4,4 @@
   <img alt="Test" src="https://github.com/Korazza/templay/actions/workflows/test.yml/badge.svg">
 </p>
 
-A tool for generating templated folders
+A tool for generating templated directories
