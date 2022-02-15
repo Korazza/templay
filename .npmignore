@@ -1,0 +1,10 @@
+.git
+.gitignore
+.github
+.npmignore
+.prettierignore
+node_modules
+go.sum
+bin
+templays
+.templays.yml
