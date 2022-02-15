@@ -3,15 +3,20 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/Korazza/templay/utils"
+	"github.com/Korazza/templay/flags"
+	"github.com/Korazza/templay/logger"
+	"github.com/Korazza/templay/templay"
 	"github.com/spf13/cobra"
 )
 
+var tVars flags.TemplayVars
+
 var genCmd = &cobra.Command{
-	Use:   "gen [-d destination] [flags] name",
-	Args:  cobra.ExactArgs(1),
-	Short: "Generate a templay",
-	Long:  `Generate a templay`,
+	Use:     "generate [-d destination] [-v key=value]... [flags] name",
+	Aliases: []string{"gen"},
+	Args:    cobra.ExactArgs(1),
+	Short:   "Generate a templay",
+	Long:    `Generate a templay`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		destination, err := cmd.Flags().GetString("dest")
 
@@ -33,9 +38,17 @@ var genCmd = &cobra.Command{
 			return fmt.Errorf("templay %s not found", templayName)
 		}
 
-		if err = utils.CopyDir(templayPath, destination); err != nil {
-			return err
+		if tVars == nil {
+			if err = templay.CopyDirectory(templayPath, destination); err != nil {
+				return err
+			}
+		} else {
+			if err = templay.ParseDirectory(templayPath, destination, tVars); err != nil {
+				return err
+			}
 		}
+
+		logger.Response.Printf("Templay %s successfully generated in %s", templayName, destination)
 
 		return nil
 	},
@@ -45,4 +58,6 @@ func init() {
 	rootCmd.AddCommand(genCmd)
 
 	genCmd.Flags().StringP("dest", "d", ".", "Destination of the templay")
+	genCmd.Flags().VarP(&tVars, "var", "v", "Variable to pass to templay")
+
 }
