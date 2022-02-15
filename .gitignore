@@ -3,6 +3,5 @@ bin
 yarn.lock
 package-lock.json
 go.sum
-
 templays
 .templay.yml
