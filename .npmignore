@@ -6,6 +6,7 @@
 node_modules
 go.sum
 bin
+examples
 templays
 .templays.yml
 .templayvars.yml
