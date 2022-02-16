@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/Korazza/templay/flags"
+	"github.com/Korazza/templay/generator"
 	"github.com/Korazza/templay/logger"
-	"github.com/Korazza/templay/templay"
 	"github.com/spf13/cobra"
 )
 
@@ -47,11 +47,11 @@ var genCmd = &cobra.Command{
 		templayVars.Load(varsFile)
 
 		if templayVars == nil {
-			if err = templay.CopyDirectory(templayPath, destination); err != nil {
+			if err = generator.CopyDirectory(templayPath, destination); err != nil {
 				return err
 			}
 		} else {
-			if err = templay.ParseDirectory(templayPath, destination, templayVars); err != nil {
+			if err = generator.ParseDirectory(templayPath, destination, templayVars); err != nil {
 				return err
 			}
 		}
