@@ -18,8 +18,10 @@ jobs:
           go-version: 1.17
       - name: Test CLI
         uses: actions/setup-node@v2
-      - run: yarn build
-      - run: echo "templays:" > .templays.yml
+      - name: Build binary
+        run: yarn build
+      - name: Create config file
+        run: echo "templays:" > .templays.yml
       - name: Test help command
         run: ./bin/templay
       - name: Test list command
