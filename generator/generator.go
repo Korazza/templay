@@ -1,4 +1,4 @@
-package templay
+package generator
 
 import (
 	"html/template"
