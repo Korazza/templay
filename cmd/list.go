@@ -12,6 +12,10 @@ var listCmd = &cobra.Command{
 	Short: "List all templays",
 	Long:  `List all templays`,
 	Run: func(cmd *cobra.Command, args []string) {
+		if Config.Templays == nil {
+			logger.Response.Print("Templays not found")
+			return
+		}
 		list := fmt.Sprintf("%-10s %s", "Name", "Path")
 		for templay, path := range Config.Templays {
 			list = fmt.Sprintf("%s\n%-10s %s", list, templay, path)
