@@ -20,4 +20,7 @@ jobs:
         uses: actions/setup-node@v2
       - run: yarn build
       - run: echo "templays:" > .templays.yml
-      - run: ./bin/templay
+      - name: Test help command
+        run: ./bin/templay
+      - name: Test list command
+        run: ./bin/templay list
