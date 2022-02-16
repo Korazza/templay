@@ -3,6 +3,7 @@
 .github
 .npmignore
 .prettierignore
+test
 node_modules
 go.sum
 bin

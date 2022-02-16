@@ -1,3 +1,4 @@
+test
 node_modules
 bin
 yarn.lock
@@ -6,3 +7,6 @@ go.sum
 templays
 .templays.yml
 .templayvars.yml
+!examples/**/templays
+!examples/**/.templays.yml
+!examples/**/.templayvars.yml
