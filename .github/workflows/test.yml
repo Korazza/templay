@@ -19,4 +19,5 @@ jobs:
       - name: Test CLI
         uses: actions/setup-node@v2
       - run: yarn build
+      - run: echo "templays:" > .templays.yml
       - run: ./bin/templay
