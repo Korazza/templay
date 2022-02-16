@@ -9,12 +9,8 @@ import (
 func main() {
 	var c config.Config
 
-	if err := c.SetPwd(); err != nil {
-		logger.Error.Fatal(err)
-	}
-
 	if err := c.Load(); err != nil {
-		logger.Warning.Print(err)
+		logger.Error.Fatal(err)
 	}
 
 	if err := c.Validate(); err != nil {
