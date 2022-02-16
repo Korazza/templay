@@ -5,3 +5,4 @@ package-lock.json
 go.sum
 templays
 .templays.yml
+.templayvars.yml

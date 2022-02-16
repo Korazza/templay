@@ -9,16 +9,22 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var tVars flags.TemplayVars
+var templayVars flags.TemplayVars
 
 var genCmd = &cobra.Command{
-	Use:     "generate [-d destination] [-v key=value]... [flags] name",
+	Use:     "generate [-d destination] [-f file | -v key=value]... [flags] name",
 	Aliases: []string{"gen"},
 	Args:    cobra.ExactArgs(1),
 	Short:   "Generate a templay",
 	Long:    `Generate a templay`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		destination, err := cmd.Flags().GetString("dest")
+
+		if err != nil {
+			return err
+		}
+
+		varsFile, err := cmd.Flags().GetString("file")
 
 		if err != nil {
 			return err
@@ -38,12 +44,14 @@ var genCmd = &cobra.Command{
 			return fmt.Errorf("templay %s not found", templayName)
 		}
 
-		if tVars == nil {
+		templayVars.Load(varsFile)
+
+		if templayVars == nil {
 			if err = templay.CopyDirectory(templayPath, destination); err != nil {
 				return err
 			}
 		} else {
-			if err = templay.ParseDirectory(templayPath, destination, tVars); err != nil {
+			if err = templay.ParseDirectory(templayPath, destination, templayVars); err != nil {
 				return err
 			}
 		}
@@ -58,6 +66,6 @@ func init() {
 	rootCmd.AddCommand(genCmd)
 
 	genCmd.Flags().StringP("dest", "d", ".", "Destination of the templay")
-	genCmd.Flags().VarP(&tVars, "var", "v", "Variable to pass to templay")
-
+	genCmd.Flags().StringP("file", "f", ".templayvars.yml", "Variable file")
+	genCmd.Flags().VarP(&templayVars, "var", "v", "Variable to pass to templay")
 }

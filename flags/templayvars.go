@@ -4,7 +4,10 @@ import (
 	"bytes"
 	"encoding/csv"
 	"fmt"
+	"io/ioutil"
 	"strings"
+
+	"gopkg.in/yaml.v2"
 )
 
 type TemplayVars map[string]interface{}
@@ -64,4 +67,13 @@ func (tv *TemplayVars) String() string {
 	}
 	w.Flush()
 	return "[" + strings.TrimSpace(buf.String()) + "]"
+}
+
+func (tv *TemplayVars) Load(file string) bool {
+	templayvarsYAML, err := ioutil.ReadFile(file)
+	if err != nil {
+		return false
+	}
+	err = yaml.Unmarshal(templayvarsYAML, tv)
+	return err == nil
 }

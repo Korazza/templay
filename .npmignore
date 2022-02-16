@@ -8,3 +8,4 @@ go.sum
 bin
 templays
 .templays.yml
+.templayvars.yml
