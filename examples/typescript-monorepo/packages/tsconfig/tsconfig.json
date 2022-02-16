@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"lib": ["ESNext", "ESNext.AsyncIterable"],
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"removeComments": true,
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"skipLibCheck": true
+	}
+}

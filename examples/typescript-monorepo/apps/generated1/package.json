@@ -1,0 +1,20 @@
+{
+  "name": "@example/generated1",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "author": {
+    "name": "me",
+    "email": "me@example.com"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf ./dist && tsc -b"
+  },
+  "devDependencies": {
+    "@example/tsconfig": "*",
+    "@types/node": "^17.0.4",
+    "typescript": "^4.5.4"
+  }
+}

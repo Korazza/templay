@@ -1,0 +1,14 @@
+{
+  "name": "@example/tsconfig",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": {
+    "name": "me",
+    "email": "me@example.com"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "files": [
+    "tsconfig.json"
+  ]
+}
