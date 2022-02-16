@@ -25,11 +25,11 @@ func (c *Config) SetPwd() error {
 }
 
 func (c *Config) Load() error {
-	yamlFile, err := ioutil.ReadFile(filepath.Join(c.Pwd, ".templay.yml"))
+	templaysYAML, err := ioutil.ReadFile(filepath.Join(c.Pwd, ".templays.yml"))
 	if err != nil {
 		return fmt.Errorf("no configuration file detected")
 	}
-	err = yaml.Unmarshal(yamlFile, c)
+	err = yaml.Unmarshal(templaysYAML, c)
 	if err != nil {
 		return err
 	}
