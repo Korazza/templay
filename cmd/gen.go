@@ -12,11 +12,12 @@ import (
 var templayVars flags.TemplayVars
 
 var genCmd = &cobra.Command{
-	Use:     "generate [-d destination] [-f file | -v key=value]... [flags] name",
-	Aliases: []string{"gen"},
-	Args:    cobra.ExactArgs(1),
-	Short:   "Generate a templay",
-	Long:    `Generate a templay`,
+	Use:          "generate [-d destination] [-f file | -v key=value]... [flags] name",
+	Aliases:      []string{"gen"},
+	Args:         cobra.ExactArgs(1),
+	Short:        "Generate a templay",
+	Long:         `Generate a templay`,
+	SilenceUsage: true,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		destination, err := cmd.Flags().GetString("dest")
 
