@@ -49,17 +49,17 @@ The `package.json` file has a templay variable defined as the following:
 
 In this way we will be able to specify our new package's name by passing a templay variable named `module`
 
-So we just defined a templay called `module` defined in our `templays/module` folder.
+So we just defined a templay called `module` located in `templays/module`.
 
 If we now run the list command
 
-```console
-$ yarn templay list
+```
+yarn templay list
 ```
 
 we will get the following output:
 
-```
+```yaml
 Name       Path
 module     ./templays/module
 ```
@@ -73,29 +73,29 @@ Now we are ready to generate!
 To generate our new templayed packages we just need to run the following command:
 
 ```console
-$ yarn templay gen -d destination/path -v module="module name" module
+yarn templay gen -d destination/path -v module="module name" module
 ```
 
 In this example we generated `apps/generated1` and `packages/generated2` packages by running:
 
 ```console
-$ yarn templay gen -d apps/generated1 -v module=generated1 module
+yarn templay gen -d apps/generated1 -v module=generated1 module
 ```
 
 and
 
 ```console
-$ yarn templay gen -d packages/generated2 -v module=generated2 module
+yarn templay gen -d packages/generated2 -v module=generated2 module
 ```
 
 getting the follwing outputs:
 
-```
+```yaml
 Templay module successfully generated in apps/generated1
 ```
 
 and
 
-```
+```yaml
 Templay module successfully generated in packages/generated2
 ```
