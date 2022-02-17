@@ -53,13 +53,13 @@ So we just defined a templay called `module` located in `templays/module`.
 
 If we now run the list command
 
-```
+```console
 yarn templay list
 ```
 
 we will get the following output:
 
-```yaml
+```
 Name       Path
 module     ./templays/module
 ```
@@ -90,12 +90,12 @@ yarn templay gen -d packages/generated2 -v module=generated2 module
 
 getting the follwing outputs:
 
-```yaml
+```
 Templay module successfully generated in apps/generated1
 ```
 
 and
 
-```yaml
+```
 Templay module successfully generated in packages/generated2
 ```
