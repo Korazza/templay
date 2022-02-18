@@ -51,7 +51,7 @@ var genCmd = &cobra.Command{
 			return err
 		}
 
-		logger.Response.Printf("Templay %s successfully generated in %s", templayName, destination)
+		logger.Response.Printf("Templay \"%s\" successfully generated in \"%s\"", templayName, destination)
 
 		return nil
 	},
