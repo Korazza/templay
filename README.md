@@ -12,3 +12,7 @@ A tool for generating templated files
 ```console
 npm i -g templay
 ```
+
+# Examples
+
+- [Typescript monorepo](./examples/typescript-monorepo/)
