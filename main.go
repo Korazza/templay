@@ -10,7 +10,7 @@ func main() {
 	var c config.Config
 
 	if err := c.Load(); err != nil {
-		logger.Error.Fatal(err)
+		logger.Warning.Println(err)
 	}
 
 	if err := c.Validate(); err != nil {
