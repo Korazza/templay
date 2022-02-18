@@ -36,9 +36,11 @@ templays:
   module: ./templays/module
 ```
 
-In our templay we will have a `src` directory with a simple `index.ts` file, a `tsconfig.json` which extends from our [@example/tsconfig](./packages/tsconfig/) package, and a `package.json` file.
+### **Notice:** All files in a templay folder require the `.tp` extension
 
-The `package.json` file has a templay variable defined as the following:
+We want our modules to have a `src` directory with a simple `index.ts` file, a `tsconfig.json` which extends from our [@example/tsconfig](./packages/tsconfig/) package, and a `package.json` file.
+
+The `package.json.tp` file has a templay variable defined as the following:
 
 ```json
 {
@@ -91,11 +93,11 @@ yarn templay gen -d packages/generated2 -v module=generated2 module
 getting the follwing outputs:
 
 ```
-Templay module successfully generated in apps/generated1
+Templay "module" successfully generated in "apps/generated1"
 ```
 
 and
 
 ```
-Templay module successfully generated in packages/generated2
+Templay "module" successfully generated in "packages/generated2"
 ```
