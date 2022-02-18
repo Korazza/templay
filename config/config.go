@@ -8,6 +8,8 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+const TEMPLAY_EXTENSION = ".tp"
+
 type Config struct {
 	loaded   bool
 	Templays map[string]string `yaml:"templays"`
