@@ -6,3 +6,9 @@
 </p>
 
 A tool for generating templated files
+
+# Installation
+
+```console
+npm i -g templay
+```
