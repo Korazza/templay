@@ -48,7 +48,7 @@ var genCmd = &cobra.Command{
 		templayVars.Load(varsFile)
 
 		if templayVars == nil {
-			if err = generator.CopyDirectory(templayPath, destination); err != nil {
+			if err = generator.CopyDirectory(templayPath, destination, templayVars); err != nil {
 				return err
 			}
 		} else {
