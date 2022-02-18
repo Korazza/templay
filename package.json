@@ -7,6 +7,14 @@
     "email": "corattiroberto@gmail.com"
   },
   "license": "MPL-2.0",
+  "keywords": [
+    "cli",
+    "template",
+    "templates",
+    "generation",
+    "boilerplate",
+    "automation"
+  ],
   "bin": {
     "templay": "./bin/templay"
   },
