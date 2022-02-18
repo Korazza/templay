@@ -47,14 +47,8 @@ var genCmd = &cobra.Command{
 
 		templayVars.Load(varsFile)
 
-		if templayVars == nil {
-			if err = generator.CopyDirectory(templayPath, destination, templayVars); err != nil {
-				return err
-			}
-		} else {
-			if err = generator.ParseDirectory(templayPath, destination, templayVars); err != nil {
-				return err
-			}
+		if err = generator.ParseDirectory(templayPath, destination, templayVars); err != nil {
+			return err
 		}
 
 		logger.Response.Printf("Templay %s successfully generated in %s", templayName, destination)

@@ -3,7 +3,6 @@ package generator
 import (
 	"fmt"
 	"html/template"
-	"io"
 	"io/ioutil"
 	"os"
 	"path"
@@ -67,11 +66,6 @@ func ParseFile(src, dst string, vars map[string]interface{}) error {
 	}
 	defer srcfd.Close()
 
-	if dstfd, err = os.Create(dst); err != nil {
-		return err
-	}
-	defer dstfd.Close()
-
 	templay, err = template.ParseFiles(src)
 	if err != nil {
 		return err
@@ -80,6 +74,11 @@ func ParseFile(src, dst string, vars map[string]interface{}) error {
 	if err = validateTemplay(templay, vars); err != nil {
 		return err
 	}
+
+	if dstfd, err = os.Create(dst); err != nil {
+		return err
+	}
+	defer dstfd.Close()
 
 	err = templay.Execute(dstfd, vars)
 	if err != nil {
@@ -128,88 +127,6 @@ func ParseDirectory(src, dst string, vars map[string]interface{}) error {
 			}
 		}
 	}
-	if len(errors) > 0 {
-		errMsg := strings.Join(errors, "\n\n")
-		return fmt.Errorf("\n%s", errMsg)
-	}
-	return nil
-}
-
-func CopyFile(src, dst string, vars map[string]interface{}) error {
-	var (
-		err     error
-		srcfd   *os.File
-		dstfd   *os.File
-		srcinfo os.FileInfo
-		templay *template.Template
-	)
-
-	templay, err = template.ParseFiles(src)
-	if err != nil {
-		return err
-	}
-
-	if err = validateTemplay(templay, vars); err != nil {
-		return err
-	}
-
-	if srcfd, err = os.Open(src); err != nil {
-		return err
-	}
-	defer srcfd.Close()
-
-	if dstfd, err = os.Create(dst); err != nil {
-		return err
-	}
-	defer dstfd.Close()
-
-	if _, err = io.Copy(dstfd, srcfd); err != nil {
-		return err
-	}
-
-	if srcinfo, err = os.Stat(src); err != nil {
-		return err
-	}
-
-	return os.Chmod(dst, srcinfo.Mode())
-}
-
-func CopyDirectory(src, dst string, vars map[string]interface{}) error {
-	var (
-		err     error
-		fds     []os.FileInfo
-		srcinfo os.FileInfo
-	)
-
-	if srcinfo, err = os.Stat(src); err != nil {
-		return err
-	}
-
-	if err = os.MkdirAll(dst, srcinfo.Mode()); err != nil {
-		return err
-	}
-
-	if fds, err = ioutil.ReadDir(src); err != nil {
-		return err
-	}
-
-	var errors []string
-
-	for _, fd := range fds {
-		srcfp := path.Join(src, fd.Name())
-		dstfp := path.Join(dst, fd.Name())
-
-		if fd.IsDir() {
-			if err = CopyDirectory(srcfp, dstfp, vars); err != nil {
-				errors = append(errors, err.Error())
-			}
-		} else {
-			if err = CopyFile(srcfp, dstfp, vars); err != nil {
-				errors = append(errors, err.Error())
-			}
-		}
-	}
-
 	if len(errors) > 0 {
 		errMsg := strings.Join(errors, "\n\n")
 		return fmt.Errorf("\n%s", errMsg)
