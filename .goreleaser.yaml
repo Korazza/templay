@@ -1,0 +1,35 @@
+project_name: templay
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+archives:
+  - name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
+  - replacements:
+      darwin: macOS
+      386: 32-bit
+      amd64: 64-bit
+  - wrap_in_directory: '{{ .ProjectName }}'
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: '{{ incpatch .Version }}-next'
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+release:
+  github:
+    owner: Korazza
+    name: templay
+  prerelease: auto
+  mode: append
+  name_template: 'v{{.Version}}'
