@@ -4,25 +4,25 @@ import (
 	"bytes"
 	"encoding/csv"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"strings"
 
-	"gopkg.in/yaml.v2"
+	"github.com/Korazza/templay/utils"
 )
 
 type TemplayVars map[string]interface{}
 
 // Format: a=1,b=2
-func (tv *TemplayVars) Set(val string) error {
+func (tv *TemplayVars) Set(v string) error {
 	var ss []string
-	n := strings.Count(val, "=")
+	n := strings.Count(v, "=")
 	switch n {
 	case 0:
-		return fmt.Errorf("%s must be formatted as key=value", val)
+		return fmt.Errorf("%s must be formatted as key=value", v)
 	case 1:
-		ss = append(ss, strings.Trim(val, `"`))
+		ss = append(ss, strings.Trim(v, `"`))
 	default:
-		r := csv.NewReader(strings.NewReader(val))
+		r := csv.NewReader(strings.NewReader(v))
 		var err error
 		ss, err = r.Read()
 		if err != nil {
@@ -69,11 +69,17 @@ func (tv *TemplayVars) String() string {
 	return "[" + strings.TrimSpace(buf.String()) + "]"
 }
 
-func (tv *TemplayVars) Load(file string) bool {
-	templayvarsYAML, err := ioutil.ReadFile(file)
+func (tv *TemplayVars) Load(fname string) error {
+	f, err := os.Open(fname)
 	if err != nil {
-		return false
+		return fmt.Errorf("failed to open file %s", fname)
 	}
-	err = yaml.Unmarshal(templayvarsYAML, tv)
-	return err == nil
+	defer f.Close()
+
+	err = utils.ParseYaml(f, tv)
+	if err != nil {
+		return fmt.Errorf("failed to parse yaml file %s", fname)
+	}
+
+	return nil
 }
