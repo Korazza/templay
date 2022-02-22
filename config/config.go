@@ -2,13 +2,15 @@ package config
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 
-	"gopkg.in/yaml.v2"
+	"github.com/Korazza/templay/utils"
 )
 
-const TEMPLAY_EXTENSION = ".tp"
+const (
+	TEMPLAY_CONFIGFILE = ".templays.yaml"
+	TEMPLAY_EXTENSION  = ".tp"
+)
 
 type Config struct {
 	loaded   bool
@@ -16,13 +18,15 @@ type Config struct {
 }
 
 func (c *Config) Load() error {
-	templaysYAML, err := ioutil.ReadFile(".templays.yml")
+	f, err := os.Open(TEMPLAY_CONFIGFILE)
 	if err != nil {
-		return fmt.Errorf("no configuration file detected")
+		return fmt.Errorf("failed to open configuration file %v", TEMPLAY_CONFIGFILE)
 	}
-	err = yaml.Unmarshal(templaysYAML, c)
+	defer f.Close()
+
+	err = utils.ParseYaml(f, c)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to parse configuration file %v", TEMPLAY_CONFIGFILE)
 	}
 	c.loaded = true
 	return nil
